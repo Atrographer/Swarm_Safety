@@ -1,2 +1,2 @@
-# Swarm_Saftey
+# Swarm_Safety
 Swarm Policies
