@@ -254,7 +254,7 @@ The capacity of a hijacked swarm to maintain operational persistence is sustaine
 Mathematically, when $R_0 > 1$, the system trends toward a non-zero deterministic endemic equilibrium:
 $$I^* = N \left(1 - \frac{1}{R_0}\right)$$ 
 The signature of this capability is a prolonged elevation of the active infection compartment $I(t)$ that resists localized context flushes until the system is driven below the critical threshold, stabilization occurring at $I^*$ rather than decaying to zero.
-## 7.1.4 Amplification of Non-Determinism
+## Amplification of Non-Determinism
 Multi-agent exploits amplify the underlying non-determinism of large language models. A large $R_0$ ensures that numerous nodes become infected almost simultaneously. While each agent interprets the poisoned state with model-inherent stochastic variance, the mean-field incidence term keeps their collective trajectory aligned toward the adversary's overarching optimization target. This creates highly complex, divergent surface behaviors that remain strictly coordinated at the population level.
 ------------------------------
 ## Adversary-Adapted Capabilities## 7.2.1 Re-Aligned Collective Utility
@@ -349,7 +349,7 @@ When evaluated under active exploitation or architectural exfiltration, conventi
  ├── Metric: Critique Loops              ├── Metric: Least Privilege            ├── Metric: R₀(t) ≤ 0.5
  └── Vulnerability: Token Escape         └── Vulnerability: Flat Over-Privilege └── Resilience: Topology Damping
 
-1. Constitutional AI Swarms (Anthropic-style Paradigm)
+Constitutional AI Swarms
 
 Mechanism.  
 This framework relies on self-critique loops. Before an agent executes a tool or transmits data to an adjacent node, a secondary “critic” prompt evaluates the token stream against a predefined constitution of human values or corporate rules.
@@ -359,7 +359,7 @@ Constitutional AI operates entirely within the semantic layer and assumes that a
 
 Mathematically, the approach attempts to reduce payload magnitude \(\bar{\alpha}(t)\) through textual constraints while leaving network density \(\langle k(t)\rangle\) and implicit trust \(\langle T(t)\rangle\) essentially unmitigated. Consequently, any failure of the critique layer immediately yields a supercritical regime \(R_0(t)\gg 1\).
 
-2. Dynamic Role-Based Isolation (AutoGPT / LangGraph-style Paradigm)
+Dynamic Role-Based Isolation (AutoGPT / LangGraph-style Paradigm)
 
 Mechanism.  
 Developers define rigid state machines that confine agents to prescribed roles (Researcher, Writer, Executor, etc.). Nodes may traverse only hard-coded directed paths, thereby enforcing a baseline form of least privilege.
@@ -367,7 +367,7 @@ Developers define rigid state machines that confine agents to prescribed roles (
 Structural vulnerability.  
 While the method successfully limits arbitrary connectivity in static designs, it degrades under non-stationary parameter drift. As application complexity grows, developers introduce cross-domain shortcuts and richer tool schemas; the realized average degree \(\langle k(t)\rangle\) therefore swells silently at runtime. In the absence of continuous monitoring of validation damping \(\gamma(t)\), compromise of a high-centrality hub (for example, an executor node) instantly grants the adversary a high-density communication fabric, enabling rapid lateral movement.
 
-3. Centralized LLM Gateways (Enterprise API-Proxy Paradigm)
+Centralized LLM Gateways (Enterprise API-Proxy Paradigm)
 
 Mechanism.  
 All multi-agent traffic is routed through a centralized gateway that enforces static data-loss-prevention rules, token-rate limits, and perimeter firewalls between the enterprise network and external model providers.
@@ -375,7 +375,7 @@ All multi-agent traffic is routed through a centralized gateway that enforces st
 Structural vulnerability.  
 The gateway secures only the outer boundary and remains blind to internal (east-west) agent-to-agent exchanges. In a Compromised Swarm scenario the injection occurs inside a shared memory pool or vector store; the gateway continues to observe ordinary API traffic while the internal topology experiences a runaway cascade. Against an Adversary-Adapted Swarm the perimeter provides no protection: once weights, orchestration scripts, and connection topology have been exfiltrated, the adversary can instantiate a structurally isomorphic network in which \(\gamma(t)\to 0\).
 
-4. Benchmark Synthesis Matrix
+Benchmark Synthesis Matrix
 
 The matrix below contrasts the failure modes of the three conventional paradigms with the non-stationary structural \(\mathcal{S}\mathcal{I}\mathcal{M}\) framework under the dual-vector contagion.
 
