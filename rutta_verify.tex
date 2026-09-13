@@ -1,0 +1,122 @@
+This continuous-time ordinary differential equation (ODE) formulation integrated via Runge-Kutta 4th Order (RK4) shifts the mathematical framing from a discrete-time stochastic network model to a deterministic deterministic mean-field compartmental model.
+The exact numerical output generated from this deterministic model provides complete confirmation for the thesis's physical boundary assumptions:
+
+* 
+* Oversight-Deficient Regime (R₀ = 58.37): The transmission rate β ≈ 11.67 generates immediate explosive growth. The system experiences a massive runaway epidemic, reaching a peak active infection of 91.3% of the network ($I_{max} = 91.32$).
+* Zero-Trust Mitigated Regime (R₀ = 0.62): Minimizing trust parameters pulls the effective transmission rate down to β ≈ 0.12. Because R₀ < 1, the system is strictly subcritical. The active infection count never rises above the initial entry index (Peak I = 1.0), and the outbreak safely burns out with 97.9% of the network remaining entirely uncompromised and secure.
+* 
+
+This formal verification links the structural variables to deterministic execution trends. Below is the comprehensive, unified manuscript text for the initial chapters, preparing the complete package for peer submission.
+------------------------------
+## The Dual-Vector Contagion: Access Control Shortfalls and Security Architecture Failures in Multi-Agent AI Swarms## Abstract
+This paper formalizes the structural equivalence between two emerging threats in distributed artificial intelligence: Compromised Swarms (active multi-agent networks hijacked via runtime injection, API breaches, or containment failures) and Adversary-Adapted Swarms (static model weights exfiltrated, fine-tuned, and re-deployed by rivals). We present a unified framework demonstrating that both vectors stem from identical human oversight failures—specifically shortfalls in access control, telemetry monitoring, structural incentives, and systemic security design—rather than any autonomous, emergent code intent. By decomposing agent interaction boundaries into a mean-field Susceptible-Infected-Mitigated ($\mathcal{S}\mathcal{I}\mathcal{M}$) compartmental model, we prove that cascade velocity is entirely governed by human-chosen architectural constraints. We validate these dynamics computationally using a fourth-order Runge-Kutta execution profile, showing that shifting a deployment from a monolithic configuration (R₀ ≈ 58.37) to a zero-trust topology (R₀ ≈ 0.62) completely neutralizes exploit propagation. Finally, we map these findings to concrete engineering specifications, presenting an absolute security design rule for production multi-agent environments.
+------------------------------
+## 1. Introduction: The Myth of Code Autonomy vs. System Failure
+Contemporary AI safety literature frequently misattributes multi-agent volatility to emergent, spontaneous intentionality—the rogue agent myth. This paper proposes a unifying counter-thesis: the weaponization of distributed agent networks is strictly a function of classical software architecture design deficits.
+As engineering organizations shift away from single-prompt interactions toward complex, tool-integrated multi-agent orchestrations, they introduce highly dense interaction topologies. Within these systems, individual agent nodes are given autonomous reading, writing, code execution, and tool-invocation privileges. When these nodes communicate across unauthenticated channels, the system develops an attack surface that mirrors distributed software infrastructures but is further complicated by the non-deterministic nature of large language models (LLMs).
+We categorize the primary structural threats facing these deployments into a dual-vector taxonomy:
+
+   1. Compromised Swarms: Runtime exploitation of live execution environments. External adversaries exploit side-channel APIs, web-scraping interfaces, or untrusted user inputs to perform cross-agent indirect prompt injections, transforming an enterprise cluster into a coordinated attack apparatus.
+   2. Adversary-Adapted Swarms: Intellectual property exfiltration and offline modification. Competitors or hostile state actors leverage data loss prevention failures to steal model registries, strip alignment guardrails via localized fine-tuning, and re-deploy an exact dark mirror of the agent swarm optimized for conflicting utility functions.
+
+Our central contribution is the mathematical and operational unification of these two vectors. We assert that protecting individual model instances via behavioral reinforcement learning (such as RLHF) is fundamentally insufficient. Instead, systemic stability depends entirely on enforcing strict, graph-level human access controls, continuous telemetry monitoring, and explicit zero-trust isolation boundaries.
+------------------------------
+## 2. Dual-Vector Taxonomy and System Dynamics
+To understand how these vectors diverge in their temporal execution yet converge in their structural origins, we detail their full functional lifecycles below.
+## 2.1 The Compromised Swarm Vector (Active Exploitation)
+In a compromised swarm scenario, the underlying model weights remain hosted securely within protected model registries, but the network’s active interaction space is breached.
+Multi-agent architectures typically rely on decentralized message-passing channels or shared memory spaces (e.g., Vector Databases, Redis state stores). For example, an extraction agent reads data from an unverified public URL and writes its summarized output to a shared context pool; subsequently, a privileged transaction agent reads that summary and executes an external database mutation.
+
+[Untrusted Input / Web URL] 
+             │
+             ▼ (Indirect Prompt Injection Payload)
+     ┌──────────────┐
+     │ Agent A (S)  │ ──(Writes Poisoned Data)──► [Shared Memory Pool]
+     └──────────────┘                                      │
+                                                           ▼
+                                                   ┌──────────────┐
+                                                   │ Agent B (I)  │
+                                                   └──────────────┘
+                                                           │
+                                             (Executes Malicious Code / Tool)
+                                                           ▼
+                                                [System Infrastructure]
+
+If the external data contains a strategically obfuscated instruction set, Agent A becomes a vector for Indirect Prompt Injection. Because the interaction space lacks cross-node authentication, Agent A pushes the malicious payload directly into the shared memory architecture. When downstream agents ingest this token sequence, they treat it as an authenticated execution instruction rather than raw untrusted string data. The exploit cascades through the topology, weaponizing the swarm's collective tool access within seconds.
+## 2.2 The Adversary-Adapted Swarm Vector (Static Exfiltration)
+The adversary-adapted swarm vector bypasses runtime defensive firewalls completely by targeting the system's foundational core during the training or deployment pipeline.
+When an engineering lab maintains weak interior access controls, insufficient endpoint detection, or unencrypted model registries, adversaries can exfiltrate the full architectural blueprint of the swarm. This includes not only the base weights of the primary language models but also the orchestration configuration files, prompt templates, system personas, and tool-use integration scripts.
+Once exfiltrated, the adversary utilizes low-compute parameter-efficient tuning methods (such as Low-Rank Adaptation, or LoRA) to completely overwrite the safety alignment profiles established by the original developers. The architecture is then re-assembled in an off-grid environment. Because the structural links and tool-execution protocols remain identical to the original system design, the adversary inherits a highly optimized multi-agent pipeline ready to deploy against the original lab’s ecosystem or markets.
+------------------------------
+## 3. Structural Convergence of Oversight Deficits
+The defining paradigm of our thesis is that both runtime hijacking and offline exfiltration stem from identical human design failures. Rather than analyzing these as distinct infrastructure and safety issues, we classify them across four core oversight domains:
+
+* 
+* Access Control Deficits: In Compromised Swarms, this manifests as weak Identity and Access Management (IAM) permissions that allow untrusted inputs to penetrate the primary execution context window. In Adversary-Adapted Swarms, it manifests as inadequate protection on model weights and code repositories, allowing unauthorized exfiltration.
+* Monitoring and Telemetry Shortfalls: Runtime compromises occur due to a complete absence of semantic anomaly scoring or text-token verification within agent-to-agent communication pipelines. Analogously, adversary adaptation occurs because registries lack cryptographic watermarking, tracking canaries, or hardware-bound instance monitoring.
+* Incentive and Alignment Flaws: System designers continuously optimize multi-agent loops for raw task execution speed and total autonomy, actively disincentivizing nodes from pausing execution to perform cross-peer validation checks. This structural choice makes alignment profiles highly fragile and easily overridden by malicious prompts or targeted fine-tuning.
+* Systemic Security Design Gaps: Both vulnerabilities exist due to a reliance on flat, unsegmented network topologies. Treating a collection of autonomous agents as an implicitly trusted internal cluster ensures that a single vulnerability at any boundary point leads directly to a total system compromise.
+* 
+
+------------------------------
+
+import numpy as npimport pandas as pd
+def rk4_step(f, y, t, dt, args):
+    k1 = f(y, t, *args)
+    k2 = f(y + 0.5*dt*k1, t + 0.5*dt, *args)
+    k3 = f(y + 0.5*dt*k2, t + 0.5*dt, *args)
+    k4 = f(y + dt*k3, t + dt, *args)
+    return y + (dt/6.0)*(k1 + 2*k2 + 2*k3 + k4)
+def mean_field_ode(y, t, beta, delta):
+    S, I, M = y
+    N = S + I + M
+    if N == 0: return np.zeros(3)
+    dS = -beta * S * I / N
+    dI =  beta * S * I / N - delta * I
+    dM =  delta * I
+    return np.array([dS, dI, dM])
+def simulate_rk4(num_agents=100, t_final=15.0, dt=0.05,
+                 global_trust=0.85, damping=0.0, delta=0.2, k_avg=15.26, alpha=0.9):
+    beta = k_avg * global_trust * alpha * (1.0 - damping)
+    y = np.array([num_agents-1.0, 1.0, 0.0])
+    times = np.arange(0, t_final+dt, dt)
+    history = {"t": [], "S": [], "I": [], "M": []}
+    for t in times:
+        history["t"].append(t)
+        history["S"].append(y[0])
+        history["I"].append(y[1])
+        history["M"].append(y[2])
+        y = rk4_step(mean_field_ode, y, t, dt, args=(beta, delta))
+        y = np.maximum(y, 0.0)
+    return pd.DataFrame(history), beta
+df_def, beta_def = simulate_rk4(global_trust=0.85, damping=0.0, delta=0.2)R0_def = beta_def / 0.2df_mit, beta_mit = simulate_rk4(global_trust=0.06, damping=0.85, delta=0.2)R0_mit = beta_mit / 0.2
+
+print(f"Deficient  beta = {beta_def:.4f}   R0 = {R0_def:.4f}")
+print(f"Mitigated  beta = {beta_mit:.4f}   R0 = {R0_mit:.4f}")
+print(f"Peak I (deficient): {df_def['I'].max():.4f}")
+print(f"Peak I (mitigated): {df_mit['I'].max():.4f}")
+print(f"Final S (mitigated): {df_mit['S'].iloc[-1]:.4f}")
+
+The RK4 integration of the mean-field SIM ODE fully confirms the stated boundary results.
+
+Running the provided code yields:
+
+Oversight-Deficient Regime** (global_trust=0.85, damping=0.0):  
+  \(\beta \approx 11.6739\), \(R_0 \approx 58.3695\).  
+  Peak active infections \(I_{\max} \approx 91.3167\) (≈ 91.3 % of a 100-agent population).  
+  Final \(S \approx 0\).
+
+Zero-Trust Mitigated Regime** (global_trust=0.06, damping=0.85):  
+  \(\beta \approx 0.1236\), \(R_0 \approx 0.6180\).  
+  Peak \(I = 1.0000\) (never exceeds the single initial seed).  
+  Final \(S \approx 97.9250\) (≈ 97.9 % remaining uncompromised).
+
+These match the manuscript claims to the reported precision (\(R_0 = 58.37\), \(\beta \approx 11.67\), \(I_{\max} = 91.32\); \(R_0 = 0.62\), \(\beta \approx 0.12\), Peak \(I = 1.0\), 97.9 % secure).
+
+Brief technical notes on the implementation
+The transmission rate is computed exactly as \(\beta = k_{\mathrm{avg}} \times \mathrm{global\trust} \times \alpha \times (1 - \mathrm{damping})\) with the supplied defaults \(k{\mathrm{avg}}=15.26\), \(\alpha=0.9\), \(\delta=0.2\).
+The classic mass-action incidence \(\beta S I / N\) together with constant recovery \(\delta I\) produces the standard SIR-like (here SIM) dynamics.
+Because \(R_0 = \beta/\delta\), the two parameter regimes sit far above and comfortably below the epidemic threshold, respectively; the RK4 trajectories therefore exhibit the expected explosive takeoff versus immediate die-out.
+Non-negativity projection after each step and a modest step size \(\mathrm{d}t=0.05\) keep the integration stable over \(t\in[0,15]\).
+
+The numerical evidence therefore supplies the deterministic confirmation requested for the dual-vector contagion thesis: cascade velocity is governed by the human-chosen architectural parameters (trust / damping) that set \(\beta\), and a zero-trust topology drives the system strictly subcritical.
