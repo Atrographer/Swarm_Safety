@@ -1,0 +1,135 @@
+Here is the complete, consolidated index of all mathematical equations and formal models derived across the manuscript, presented with unified notation for peer-review insertion.
+## Section 4.1: Network Topography & State Transitions
+The system is modeled as a directed graph $G = (V, E)$, where $V$ represents the set of autonomous agent nodes ($v_i$) and $E$ represents active communication and tool-use channels.
+Nodes traverse a discrete-time or continuous-time Susceptible-Infected-Mitigated ($\mathcal{S}\mathcal{I}\mathcal{M}$) compartmental loop.
+
+* Independent-Cascade Edge Transmission Probability:
+The probability that an actively infected node $v_i$ successfully compromises an adjacent secure node $v_j$ at the next operational step:
+$$P(v_j \in \mathcal{I}_{t+1} \mid v_i \in \mathcal{I}_t) = T_{ij} \cdot \alpha_i \cdot \prod_{k \in \Phi_j} (1 - \gamma_k)$$ 
+Where $T_{ij}$ is the implicit trust coefficient of the directed edge, $\alpha_i$ is the attack payload magnitude, $\Phi_j$ is the set of ingress verification gates for node $v_j$, and $\gamma_k$ is the empirical damping efficiency of gate $k$.
+* Cumulative Global Node Activation Pressure:
+The independent complement-product probability that a secure node $v_j$ is compromised given the set of all infected incoming neighbors $N^{inf}_j(t)$ at time $t$:
+$$P(v_j \in \mathcal{I}_{t+1} \mid v_j \in \mathcal{S}_t) = 1 - \prod_{i \in N^{inf}_j(t)} \left( 1 - \left[ T_{ij} \cdot \alpha_i \cdot \prod_{k \in \Phi_j} (1 - \gamma_k) \right] \right)$$ 
+* Automated Anomaly Quarantine Rate:
+The probability per unit of time that an infected node is detected and isolated ($\mathcal{I} \to \mathcal{M}$) by telemetry monitors:
+$$P(v_i \in \mathcal{M}_{t+1} \mid v_i \in \mathcal{I}_t) = \delta$$ 
+
+------------------------------
+## Section 4.2: Mean-Field Approximations & Epidemic Thresholds
+Under a standard configuration-model branching-process assumption across a sparse network graph, the global parameters are simplified to their mean-field expectations: $\langle k \rangle$ (average node degree), $\langle T \rangle$ (mean global trust), $\bar{\alpha}$ (average payload magnitude), and $\langle 1 - \gamma \rangle$ (average geometric gate omission rate).
+
+* Effective Population Transmission Rate ($\beta$):
+$$\beta = \langle k \rangle \cdot \langle T \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle$$ 
+* Basic Reproduction Number ($R_0$):
+The continuous-time ratio determining whether an isolated exploit triggers a macroscopic cascade ($R_0 > 1$) or decays exponentially ($R_0 < 1$):
+$$R_0 = \frac{\beta}{\delta} = \frac{\langle k \rangle \cdot \langle T \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle}{\delta}$$ 
+* Critical Trust Threshold ($\langle T \rangle_c$):
+The precise topological boundary condition. If system architects enforce structural controls such that $\langle T \rangle < \langle T \rangle_c$, a systemic outbreak is mathematically impossible:
+$$\langle T \rangle_c = \frac{\delta}{\langle k \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle}$$ 
+
+------------------------------
+## Section 4.3: Continuous-Time Deterministic Core (RK4 Equations)
+To evaluate macroscopic population dynamics, the stochastic network graph is translated into a deterministic system of non-linear ordinary differential equations (ODEs), preserving conservation of mass ($N = S + I + M$).
+
+* System of Differential Equations:
+$$\frac{dS}{dt} = -\frac{\beta S I}{N}$$ 
+$$\frac{dI}{dt} = \frac{\beta S I}{N} - \delta I$$ 
+$$\frac{dM}{dt} = \delta I$$ 
+
+------------------------------
+## Section 7.1: Macro-Scale Steady States
+
+* Deterministic Endemic Equilibrium ($I^*$):
+For a supercritical network configuration ($R_0 > 1$), this state equation dictates the persistent level of active infections sustained by unverified shared ambient memory pools ($\gamma \to 0$), tracking the system's final saturation threshold:
+$$I^* = N \left(1 - \frac{1}{R_0}\right)$$ 
+
+------------------------------
+## Section 6.2: Production Hardening Constraints
+
+* Mandated Security Design Rule:
+The structural safety ceiling enforced on engineering teams to absorb the risks of real-world topological anomalies, agent heterogeneity, and cooperative adversarial prompt injections:
+$$R_0 \le 0.5$$ 
+
+Complete List of All Equations in the Manuscript
+
+Graph Definition
+\[
+G(t) = (V, E(t))
+\]
+
+Micro-scale Instantaneous Transmission Rate
+\[
+\lambda_{ij}(t) = T_{ij}(t) \cdot \alpha_i(t) \cdot \prod_{k \in \Phi_j} \bigl(1 - \gamma_k(t)\bigr)
+\]
+
+Global Instantaneous Hazard Rate
+\[
+\Lambda_j(t) = \sum_{i \in N_j^{\mathrm{inf}}(t)} \lambda_{ij}(t)
+\]
+
+Discrete-Time Infection Probability Approximation
+\[
+P(v_j \in \mathcal{I}_{t+\Delta t} \mid v_j \in \mathcal{S}_t) \approx 1 - \exp\bigl(-\Lambda_j(t)\,\Delta t\bigr)
+\]
+
+Instantaneous Quarantine Rate
+\[
+\lim_{\Delta t \to 0} \frac{P(v_i \in \mathcal{M}_{t+\Delta t} \mid v_i \in \mathcal{I}_t)}{\Delta t} = \delta(t)
+\]
+
+Effective Transmission Rate (Mean-Field)
+\[
+\beta(t) = \langle k(t) \rangle \cdot \langle T(t) \rangle \cdot \bar{\alpha}(t) \cdot \bigl(1 - \gamma(t)\bigr)
+\]
+
+Instantaneous Basic Reproduction Number
+\[
+R_0(t) = \frac{\beta(t)}{\delta(t)} = \frac{\langle k(t) \rangle \cdot \langle T(t) \rangle \cdot \bar{\alpha}(t) \cdot \bigl(1 - \gamma(t)\bigr)}{\delta(t)}
+\]
+
+Instantaneous Critical Trust Threshold
+\[
+\langle T(t) \rangle_c = \frac{\delta(t)}{\langle k(t) \rangle \cdot \bar{\alpha}(t) \cdot \bigl(1 - \gamma(t)\bigr)}
+\]
+
+Non-Autonomous Continuous-Time ODEs (Mass-Conserving)
+\begin{align*}
+\frac{dS}{dt} &= -\frac{\beta(t)\, S\, I}{N} \\
+\frac{dI}{dt} &= \frac{\beta(t)\, S\, I}{N} - \delta(t)\, I \\
+\frac{dM}{dt} &= \delta(t)\, I
+\end{align*}
+
+Quasi-Endemic (Slowly Varying) Equilibrium
+\[
+I_{\mathrm{quasi}}^*(t) \approx N \left(1 - \frac{1}{R_0(t)}\right)
+\]
+
+Stationary Special Cases (Time-Invariant Parameters)
+\[
+\beta = \langle k \rangle \cdot \langle T \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle
+\]
+\[
+R_0 = \frac{\beta}{\delta}
+\]
+\[
+\langle T \rangle_c = \frac{\delta}{\langle k \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle}
+\]
+\[
+I^* = N \left(1 - \frac{1}{R_0}\right)
+\]
+
+Production Hardening Constraint
+\[
+R_0 \le 0.5
+\]
+
+Earlier Discrete Independent-Cascade Forms (for reference)
+\[
+P(v_j \in \mathcal{I}{t+1} \mid v_i \in \mathcal{I}_t) = T{ij} \cdot \alpha_i \cdot \prod_{k \in \Phi_j} (1 - \gamma_k)
+\]
+\[
+P(v_j \in \mathcal{I}{t+1} \mid v_j \in \mathcal{S}_t) = 1 - \prod{i \in N_j^{\mathrm{inf}}(t)} \Bigl(1 - \bigl[T_{ij} \cdot \alpha_i \cdot \prod_{k \in \Phi_j} (1 - \gamma_k)\bigr]\Bigr)
+\]
+\[
+P(v_i \in \mathcal{M}_{t+1} \mid v_i \in \mathcal{I}_t) = \delta
+\]
