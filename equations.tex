@@ -1,5 +1,5 @@
 Here is the complete, consolidated index of all mathematical equations and formal models derived across the manuscript, presented with unified notation for peer-review insertion.
-## Section 4.1: Network Topography & State Transitions
+## Network Topography & State Transitions
 The system is modeled as a directed graph $G = (V, E)$, where $V$ represents the set of autonomous agent nodes ($v_i$) and $E$ represents active communication and tool-use channels.
 Nodes traverse a discrete-time or continuous-time Susceptible-Infected-Mitigated ($\mathcal{S}\mathcal{I}\mathcal{M}$) compartmental loop.
 
@@ -15,7 +15,7 @@ The probability per unit of time that an infected node is detected and isolated 
 $$P(v_i \in \mathcal{M}_{t+1} \mid v_i \in \mathcal{I}_t) = \delta$$ 
 
 ------------------------------
-## Section 4.2: Mean-Field Approximations & Epidemic Thresholds
+## Mean-Field Approximations & Epidemic Thresholds
 Under a standard configuration-model branching-process assumption across a sparse network graph, the global parameters are simplified to their mean-field expectations: $\langle k \rangle$ (average node degree), $\langle T \rangle$ (mean global trust), $\bar{\alpha}$ (average payload magnitude), and $\langle 1 - \gamma \rangle$ (average geometric gate omission rate).
 
 * Effective Population Transmission Rate ($\beta$):
@@ -28,7 +28,7 @@ The precise topological boundary condition. If system architects enforce structu
 $$\langle T \rangle_c = \frac{\delta}{\langle k \rangle \cdot \bar{\alpha} \cdot \langle 1 - \gamma \rangle}$$ 
 
 ------------------------------
-## Section 4.3: Continuous-Time Deterministic Core (RK4 Equations)
+## Continuous-Time Deterministic Core (RK4 Equations)
 To evaluate macroscopic population dynamics, the stochastic network graph is translated into a deterministic system of non-linear ordinary differential equations (ODEs), preserving conservation of mass ($N = S + I + M$).
 
 * System of Differential Equations:
@@ -37,14 +37,14 @@ $$\frac{dI}{dt} = \frac{\beta S I}{N} - \delta I$$
 $$\frac{dM}{dt} = \delta I$$ 
 
 ------------------------------
-## Section 7.1: Macro-Scale Steady States
+## Macro-Scale Steady States
 
 * Deterministic Endemic Equilibrium ($I^*$):
 For a supercritical network configuration ($R_0 > 1$), this state equation dictates the persistent level of active infections sustained by unverified shared ambient memory pools ($\gamma \to 0$), tracking the system's final saturation threshold:
 $$I^* = N \left(1 - \frac{1}{R_0}\right)$$ 
 
 ------------------------------
-## Section 6.2: Production Hardening Constraints
+## Production Hardening Constraints
 
 * Mandated Security Design Rule:
 The structural safety ceiling enforced on engineering teams to absorb the risks of real-world topological anomalies, agent heterogeneity, and cooperative adversarial prompt injections:
