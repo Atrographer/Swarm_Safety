@@ -1,4 +1,4 @@
-Abstract (tightened)
+Abstract
 We formalize the structural equivalence between Compromised Swarms (live multi-agent systems hijacked via runtime injection or containment failure) and Adversary-Adapted Swarms (exfiltrated architectures fine-tuned and redeployed by rivals). Both vectors arise from identical human oversight failures—access-control shortfalls, monitoring gaps, misaligned incentives, and flat topological design—rather than autonomous code intent. Using a non-stationary mean-field Susceptible-Infected-Mitigated (\(\mathcal{S}\mathcal{I}\mathcal{M}\)) model, we show that cascade risk is governed by the time-varying parameters
 \[
 \beta(t)=\langle k(t)\rangle\cdot\langle T(t)\rangle\cdot\bar\alpha(t)\cdot(1-\gamma(t)),\qquad R_0(t)=\beta(t)/\delta(t).
@@ -331,3 +331,59 @@ The matrix below summarizes how the dual-vector thesis bridges historical gaps a
 | System Agency        | Rogue internal algorithmic intent                  | Human structural deficit in access control and telemetry    |
 
 By unifying these previously siloed literatures under a single mean-field epidemic model, the dual-vector thesis supplies both a diagnostic account of why current defenses remain incomplete and a quantitative engineering criterion (\(R_0 \le 0.5\)) for production-grade multi-agent systems.
+
+Comparison to Existing Multi-Agent Safety Frameworks
+
+To establish the practical utility of the non-stationary structural model, we contrast its performance against the three leading safety frameworks currently deployed in multi-agent orchestration: Constitutional AI Swarms, Dynamic Role-Based Isolation, and Centralized LLM Gateways.  
+
+When evaluated under active exploitation or architectural exfiltration, conventional frameworks fail because they treat safety as an algorithmic behavioral problem (modifying model outputs or static permissions) rather than an architectural propagation problem (continuously modulating the network parameters that govern \(R_0(t)\)).
+
+                             ┌───────────────────────────────────────┐
+                             │       MULTI-AGENT SAFETY PARADIGMS    │
+                             └───────────────────┬───────────────────┘
+                                                 │
+         ┌───────────────────────────────────────┼───────────────────────────────────────┐
+         ▼                                       ▼                                       ▼
+  [Constitutional AI]                     [Role Isolation]                       [Structural SIM]
+ ├── Focus: Node Alignment               ├── Focus: Edge Permissions            ├── Focus: Parameter Balance
+ ├── Metric: Critique Loops              ├── Metric: Least Privilege            ├── Metric: R₀(t) ≤ 0.5
+ └── Vulnerability: Token Escape         └── Vulnerability: Flat Over-Privilege └── Resilience: Topology Damping
+
+1. Constitutional AI Swarms (Anthropic-style Paradigm)
+
+Mechanism.  
+This framework relies on self-critique loops. Before an agent executes a tool or transmits data to an adjacent node, a secondary “critic” prompt evaluates the token stream against a predefined constitution of human values or corporate rules.
+
+Structural vulnerability.  
+Constitutional AI operates entirely within the semantic layer and assumes that a model can reliably judge its own inputs. Under a Compromised Swarm vector that employs indirect prompt injection, the adversary can overwrite the core context of the critic agent itself. Because the framework treats nodes as isolated moral actors rather than vertices in a time-varying graph \(G(t)\), an injection that bypasses the constitutional prompt propagates unhindered.  
+
+Mathematically, the approach attempts to reduce payload magnitude \(\bar{\alpha}(t)\) through textual constraints while leaving network density \(\langle k(t)\rangle\) and implicit trust \(\langle T(t)\rangle\) essentially unmitigated. Consequently, any failure of the critique layer immediately yields a supercritical regime \(R_0(t)\gg 1\).
+
+2. Dynamic Role-Based Isolation (AutoGPT / LangGraph-style Paradigm)
+
+Mechanism.  
+Developers define rigid state machines that confine agents to prescribed roles (Researcher, Writer, Executor, etc.). Nodes may traverse only hard-coded directed paths, thereby enforcing a baseline form of least privilege.
+
+Structural vulnerability.  
+While the method successfully limits arbitrary connectivity in static designs, it degrades under non-stationary parameter drift. As application complexity grows, developers introduce cross-domain shortcuts and richer tool schemas; the realized average degree \(\langle k(t)\rangle\) therefore swells silently at runtime. In the absence of continuous monitoring of validation damping \(\gamma(t)\), compromise of a high-centrality hub (for example, an executor node) instantly grants the adversary a high-density communication fabric, enabling rapid lateral movement.
+
+3. Centralized LLM Gateways (Enterprise API-Proxy Paradigm)
+
+Mechanism.  
+All multi-agent traffic is routed through a centralized gateway that enforces static data-loss-prevention rules, token-rate limits, and perimeter firewalls between the enterprise network and external model providers.
+
+Structural vulnerability.  
+The gateway secures only the outer boundary and remains blind to internal (east-west) agent-to-agent exchanges. In a Compromised Swarm scenario the injection occurs inside a shared memory pool or vector store; the gateway continues to observe ordinary API traffic while the internal topology experiences a runaway cascade. Against an Adversary-Adapted Swarm the perimeter provides no protection: once weights, orchestration scripts, and connection topology have been exfiltrated, the adversary can instantiate a structurally isomorphic network in which \(\gamma(t)\to 0\).
+
+4. Benchmark Synthesis Matrix
+
+The matrix below contrasts the failure modes of the three conventional paradigms with the non-stationary structural \(\mathcal{S}\mathcal{I}\mathcal{M}\) framework under the dual-vector contagion.
+
+| Safety Framework              | Core Defense Posture                          | Resilience to Compromised Swarms (\(R_0(t)\gg 1\)) | Resilience to Adversary-Adapted Swarms | Operational Failure Mode                              | Parameter Metric Addressed                                      |
+|-------------------------------|-----------------------------------------------|----------------------------------------------------|----------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------|
+| Constitutional AI Swarms      | Semantic self-critique and alignment prompts  | Low – susceptible to injections that overwrite critique instructions | Zero – entirely rewritten by offline fine-tuning | Semantic jailbreak cascades through trusted paths    | Attempts to minimize \(\bar{\alpha}(t)\)                        |
+| Dynamic Role Isolation        | Static developer-defined state machines       | Medium – restricts early movement but fails at hubs | Low – configuration scripts copied intact | Silent accumulation of unmapped communication edges  | Restricts average node degree \(\langle k(t)\rangle\)           |
+| Centralized LLM Gateways      | Boundary proxies and external string filtering| Low – blind to internal agent-to-agent traffic     | Low – cannot detect weight exfiltration | Perimeter bypass via internal database manipulation  | Attempts static external validation \(\gamma\)                  |
+| Structural \(\mathcal{S}\mathcal{I}\mathcal{M}\) | Continuous parameter tracking & graph throttling | High – dynamically collapses \(\langle k(t)\rangle\) or trust to enforce \(R_0(t)\le 0.5\) | High – watermarks + hardware attestation break isomorphism | Requires low-latency telemetry infrastructure        | Coordinates full set \(\{\langle k(t)\rangle,\langle T(t)\rangle,\bar{\alpha}(t),\gamma(t),\delta(t)\}\) |
+
+By continuously measuring and actuating the complete parameter vector that determines \(R_0(t)\), the structural framework converts safety from a brittle behavioral overlay into an enforceable topological invariant—precisely the property that the three prevailing paradigms lack.
